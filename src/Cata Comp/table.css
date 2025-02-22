@@ -1,0 +1,146 @@
+.main-content1 {
+  width: 100%;
+  height: 82vh;
+  padding: 20px;
+  overflow: auto;
+  scrollbar-width: none;
+}
+.category-container1 {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.dashboard-header1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  margin-bottom: 15px;
+}
+.section-title {
+  display: flex;
+  align-items: center;
+  font-size: 30px;
+  font-weight: bold;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.header-right {
+  display: flex;
+  align-items: center;
+}
+.search-input {
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-right: 10px;
+  margin-left: 20px;
+  width: 500px;
+}
+.add-btn {
+padding: 15px;
+border-radius: 15px;
+font-weight: 600;
+font-size: 14px;
+background-color: #662671;
+cursor: pointer;
+}
+.add-btn:hover {
+  background-color: #4a1f7a;
+}
+.product-table {
+  width: 100%;
+}
+.product-table td {
+  padding: 7px;
+  text-align: left;
+  border: none;
+}
+.product-table th {
+  padding: 14px;
+  background-color: #f8f5c2;
+  border: none; 
+  cursor: pointer;
+  font-size: 16px;
+}
+.product-table tr{
+  background-color: #F2F2F2;
+  border: 10px white solid;
+  height: 2vh;
+ 
+}
+.table-product-image {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+.sort-icons {
+  display: inline-flex;
+  flex-direction: column;
+  font-size: 10px;
+  margin-left: 5px;
+  margin-top: 10px;
+}
+.sort-icon {
+  opacity: 0.5;
+  transition: opacity 0.3s;
+}
+.sort-icon.active {
+  opacity: 1;
+}
+.status-active {
+  color: green;
+}
+.status-inactive {
+  color: red;
+}
+.edit-btn, .delete-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin: 0 5px;
+}
+.edit-btn:hover, .delete-btn:hover {
+  opacity: 0.7;
+}
+.delete-confirmation-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+.delete-confirmation-modal {
+  background-color: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  width: 300px;
+}
+.delete-confirmation-buttons {
+  margin-top: 20px;
+}
+.delete-confirmation-buttons button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  margin: 0 10px;
+}
+.delete-confirmation-buttons .cancel {
+  background-color: white;
+  border: 1px solid #9f9f9fb7;
+}
+.delete-confirmation-buttons .confirm {
+  background-color:#662671;
+  border: 1px solid #662671;
+  color: white;
+}
+.delete-confirmation-buttons .cancel:hover,
+.delete-confirmation-buttons .confirm:hover {
+  opacity: 0.8;
+}
