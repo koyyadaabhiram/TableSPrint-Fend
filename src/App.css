@@ -441,7 +441,7 @@
   align-items: center;
   margin-bottom: 30px;
 }
-.back-link {
+.edit-back-link,add-category-back-link {
   color: #333;
   margin-right: 15px;
   text-decoration: none;
@@ -457,39 +457,39 @@
   display: flex;
   flex-direction: column;
 }
-.input-row {
+.edit-input-row {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr; 
   gap: 20px;
   margin-bottom: 30px;
 }
 @media (max-width: 1024px) {
-  .input-row {
+  .edit-input-row {
     grid-template-columns: 1fr 1fr;  
   }
 }
 @media (max-width: 768px) {
-  .input-row {
+  .edit-input-row {
     grid-template-columns: 1fr; 
   }
 }
-.input-container {
+.edit-input-container {
   position: relative;
 }
-.input-row input[type="text"],
-.input-row input[type="number"],
-.input-row select {
+.edit-input-row input[type="text"],
+.edit-input-row input[type="number"],
+.edit-input-row select {
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 25px;
   outline: none;
 }
-.input-row input[type="text"]::placeholder,
+.edit-input-row input[type="text"]::placeholder,
 .input-row input[type="number"]::placeholder {
   color: #888;
 }
-.input-row label {
+.edit-input-row label {
   position: absolute;
   top: 10px;
   left: 11px;
@@ -499,49 +499,49 @@
   padding: 0 5px;
   color: #999;
 }
-.input-row input:focus + label,
-.input-row input:not(:placeholder-shown) + label {
+.edit-input-row input:focus + label,
+.edit-input-row input:not(:placeholder-shown) + label {
   top: -8px;
   font-size: 0.9em;
   color: #cbcbcb;
 }
-.input-row select {
+.edit-input-row select {
   appearance: none;
   background-image: url('data:image/svg+xml;utf8,<svg fill="black" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
   background-repeat: no-repeat;
   background-position: right 12px top 50%;
   padding-right: 35px;
 }
-.upload-image-section {
+.edi-upload-image-section {
   margin-bottom: 30px;
 }
-.upload-image-label {
+.edit-upload-image-label {
   border: 2px dashed #ccc;
-  padding: 30px;
+  padding: 50px;
   text-align: center;
   cursor: pointer;
   border-radius: 10px;
   margin-left: 12px;
 }
-.upload-image-label img {
-  max-width: 200px;
-  max-height: 200px;
+.edit-upload-image-label img {
+  width: 120px;
+  height: 100px;
   margin-top: 30px;
-  margin-bottom: -16px;
-  border-radius: 8px;
+  margin-bottom: -44px;
+  border-radius: 20px;
   object-fit: contain;
 }
-.upload-image-label input[type="file"] {
+.edit-upload-image-label input[type="file"] {
   display: none;
 }
-.button-group,.add-category-button-group {
+.edit-button-group,.add-category-button-group {
   display: flex;
   justify-content: flex-end;
   gap: 15px;
   margin-top: 220px;
 }
-.cancel-btn,
-.save-btn, .add-category-cancel-btn,
+.edit-cancel-btn,
+.edit-save-btn, .add-category-cancel-btn,
 .add-category-save-btn {
   padding: 12px 30px;
   border: none;
@@ -551,16 +551,16 @@
   font-weight: 500;
   transition: all 0.2s ease-in-out;
 }
-.cancel-btn,.add-category-cancel-btn {
+.edit-cancel-btn,.add-category-cancel-btn {
   background-color: #f0f0f0;
   color: #555;
 }
-.save-btn,.add-category-save-btn  {
+.edit-save-btn,.add-category-save-btn  {
   background-color: #662671;
   color: white;
 }
-.cancel-btn:hover,
-.save-btn:hover {
+.edit-cancel-btn:hover,
+.edit-save-btn:hover {
   opacity: 0.9;
 }
 .add-category-back-link {
@@ -734,22 +734,22 @@
 }
 .subcategory-form {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
 }
 .form-group {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr; 
-  gap: 20px;
-  margin-bottom: 30px;
+  grid-template-columns: 1fr 1fr ; 
+  gap: 10px;
+  margin-bottom: 8px;
 }
-@media (max-width: 1024px) {
+@media (max-width: 400px) {
   .form-group {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
   }
 }
-@media (max-width: 768px) {
+@media (max-width: 700px) {
   .form-group {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
   }
 }
 .input-container {
