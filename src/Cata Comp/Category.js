@@ -13,7 +13,7 @@ import "./table.css"
 
 const Category = () => {
   const navigate = useNavigate()
-  const [products, setProducts] = useState([])
+  const [category, setcategory] = useState([])
   const [sortConfig, setSortConfig] = useState({ key: null, direction: "ascending" })
   const [searchTerm, setSearchTerm] = useState("")
   const [deleteConfirmation, setDeleteConfirmation] = useState(null)
@@ -24,20 +24,20 @@ const Category = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5001/products")
-      .then((response) => setProducts(response.data))
-      .catch((error) => console.error("Error fetching products:", error))
+      .get("http://localhost:5001/category")
+      .then((response) => setcategory(response.data))
+      .catch((error) => console.error("Error fetching Category:", error))
   }, [])
 
-  const deleteProduct = (id) => {
+  const deletecategory = (id) => {
     return axios
-      .delete(`http://localhost:5001/products/${id}`)
-      .then(() => setProducts((prev) => prev.filter((product) => product.id !== id)))
-      .catch((error) => console.error("Error deleting product:", error))
+      .delete(`http://localhost:5001/category/${id}`)
+      .then(() => setcategory((prev) => prev.filter((category) => category.id !== id)))
+      .catch((error) => console.error("Error deleting Category:", error))
   }
 
-  const handleEditClick = (product) => {
-    navigate(`/edit-category/${product.id}`, { state: { product } })
+  const handleEditClick = (category) => {
+    navigate(`/edit-category/${category.id}`, { state: { category } })
   }
 
   const requestSort = (key) => {
@@ -48,38 +48,38 @@ const Category = () => {
     setSortConfig({ key, direction })
   }
 
-  const sortedProducts = useMemo(() => {
-    let sortableProducts = [...products]
+  const sortedcategory = useMemo(() => {
+    let sortablecategory = [...category]
     if (sortConfig.key) {
-      sortableProducts.sort((a, b) => {
+      sortablecategory.sort((a, b) => {
         if (a[sortConfig.key] < b[sortConfig.key]) return sortConfig.direction === "ascending" ? -1 : 1
         if (a[sortConfig.key] > b[sortConfig.key]) return sortConfig.direction === "ascending" ? 1 : -1
         return 0
       })
     }
-    return sortableProducts
-  }, [products, sortConfig])
+    return sortablecategory
+  }, [category, sortConfig])
 
-  const filteredProducts = useMemo(() => {
-    return sortedProducts.filter((product) => {
+  const filteredcategory = useMemo(() => {
+    return sortedcategory.filter((category) => {
       const searchLower = searchTerm.toLowerCase().trim()
       return (
-        String(product.id).includes(searchLower) ||
-        product.name.toLowerCase().includes(searchLower) ||
-        String(product.sequence).includes(searchLower) ||
-        (product.status && product.status.toLowerCase().includes(searchLower))
+        String(category.id).includes(searchLower) ||
+        category.categoryname.toLowerCase().includes(searchLower) ||
+        String(category.sequence).includes(searchLower) ||
+        (category.status && category.status.toLowerCase().includes(searchLower))
       )
     })
-  }, [sortedProducts, searchTerm])
+  }, [sortedcategory, searchTerm])
 
   const handleDeleteClick = (id) => setDeleteConfirmation(id)
 
   const confirmDelete = async () => {
     try {
-      await deleteProduct(deleteConfirmation)
+      await deletecategory (deleteConfirmation)
       setDeleteConfirmation(null)
     } catch (error) {
-      console.error("Error deleting product:", error)
+      console.error("Error deleting Category:", error)
     }
   }
 
@@ -122,7 +122,7 @@ const Category = () => {
             Category
             <input
               type="text"
-              placeholder="Search by ID, Name, Sequence, or Status..."
+              placeholder="Search by ID, categoryname, Sequence, or Status..."
               className="search-input"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
@@ -135,10 +135,10 @@ const Category = () => {
           </div>
         </div>
 
-        <table className="product-table">
+        <table className="category-table">
           <thead>
             <tr>
-              {["id", "name", "sequence", "status"].map((column) => (
+              {["id", "categoryname", "sequence", "status"].map((column) => (
                 <th
                   key={column}
                   onClick={() => requestSort(column)}
@@ -168,35 +168,35 @@ const Category = () => {
             </tr>
           </thead>
           <tbody>
-            {filteredProducts.length > 0 ? (
-              filteredProducts.map((product) => (
-                <tr key={product.id}>
-                  <td>{product.id}</td>
-                  <td>{product.name}</td>
-                  <td>{product.sequence}</td>
+            {filteredcategory.length > 0 ? (
+              filteredcategory.map((category) => (
+                <tr key={category.id}>
+                  <td>{category.id}</td>
+                  <td>{category.categoryname}</td>
+                  <td>{category.sequence}</td>
                   <td>
                     <span
                       className={
-                        product.status?.toLowerCase() === "active"
+                        category.status?.toLowerCase() === "active"
                           ? "status-active"
                           : "status-inactive"
                       }
                     >
-                      {product.status || "Inactive"}
+                      {category.status || "Inactive"}
                     </span>
                   </td>
                   <td>
-                    {product.image ? (
-                      <img src={product.image} alt={product.name} className="table-product-image" />
+                    {category.image ? (
+                      <img src={category.image} alt={category.name} className="table-category-image" />
                     ) : (
                       "No Image"
                     )}
                   </td>
                   <td>
-                    <button className="edit-btn" onClick={() => handleEditClick(product)}>
+                    <button className="edit-btn" onClick={() => handleEditClick(category)}>
                       <Edit20Regular />
                     </button>
-                    <button className="delete-btn" onClick={() => handleDeleteClick(product.id)}>
+                    <button className="delete-btn" onClick={() => handleDeleteClick(category.id)}>
                       <Delete20Regular />
                     </button>
                   </td>
