@@ -1,4 +1,3 @@
-// AddCategory.js
 import React, { useEffect, useState } from "react"
 import { useNavigate, Link } from "react-router-dom"
 import Cookies from "js-cookie"
@@ -8,7 +7,7 @@ import { ArrowLeft28Regular } from "@fluentui/react-icons"
 const AddCategory = () => {
   let navigate = useNavigate()
   const [categories, setCategories] = useState([])
-  const [formData, setFormData] = useState({ name: "", image: null, sequence: "" })
+  const [formData, setFormData] = useState({ categoryname: "", image: null, sequence: "" })
 
   useEffect(() => {
     let x = Cookies.get("logincrd")
@@ -21,31 +20,31 @@ const AddCategory = () => {
 
   const fetchCategories = () => {
     axios
-      .get("http://localhost:5001/products")
+      .get("http://localhost:5001/category")
       .then((response) => setCategories(response.data))
       .catch((error) => console.error("Error fetching categories:", error))
   }
 
   const addCategory = (e) => {
     e.preventDefault()
-    if (!formData.name || !formData.image || !formData.sequence) {
+    if (!formData.categoryname || !formData.image || !formData.sequence) {
       alert("All fields are required!")
       return
     }
     const data = new FormData()
-    data.append("name", formData.name)
+    data.append("categoryname", formData.categoryname)
     data.append("image", formData.image)
     data.append("sequence", formData.sequence)
 
     axios
-      .post("http://localhost:5001/products", data, {
+      .post("http://localhost:5001/category", data, {
         headers: {
           "Content-Type": "multipart/form-data"
         }
       })
       .then(() => {
         fetchCategories()
-        setFormData({ name: "", image: null, sequence: "" })
+        setFormData({ categoryname: "", image: null, sequence: "" })
         navigate("/Category")
       })
       .catch((error) => console.error("Error adding category:", error))
@@ -68,10 +67,10 @@ const AddCategory = () => {
           <div className="add-category-input-container">
             <input
               type="text"
-              name="name"
+              name="category"
               id="name"
-              value={formData.name}
-              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+              value={formData.categoryname}
+              onChange={(e) => setFormData({ ...formData, categoryname: e.target.value })}
               placeholder="Category Name"
               required
             />
