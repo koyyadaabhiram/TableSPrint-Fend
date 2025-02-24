@@ -45,28 +45,28 @@ cursor: pointer;
 .add-btn:hover {
   background-color: #4a1f7a;
 }
-.product-table {
+.category-table {
   width: 100%;
 }
-.product-table td {
+.category-table td {
   padding: 7px;
   text-align: left;
   border: none;
 }
-.product-table th {
+.category-table th {
   padding: 14px;
   background-color: #f8f5c2;
   border: none; 
   cursor: pointer;
   font-size: 16px;
 }
-.product-table tr{
+.category-table tr{
   background-color: #F2F2F2;
   border: 10px white solid;
   height: 2vh;
  
 }
-.table-product-image {
+.table-category-image {
   width: 40px;
   height: 40px;
   object-fit: cover;
