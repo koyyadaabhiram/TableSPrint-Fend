@@ -8,14 +8,14 @@ const EditCategory = () => {
   const { id } = useParams()
   const navigate = useNavigate()
   const location = useLocation()
-  const { product } = location.state
+  const { category } = location.state
 
   const [formData, setFormData] = useState({
-    name: product.name,
-    sequence: product.sequence,
+    categoryname: category.categoryname,
+    sequence: category.sequence,
     image: null,
-    previewImage: product.image,
-    status: product.status || "Active"
+    previewImage: category.image,
+    status: category.status || "Active"
   })
 
   useEffect(() => {
@@ -43,7 +43,7 @@ const EditCategory = () => {
   const handleSave = async (e) => {
     e.preventDefault()
     const data = new FormData()
-    data.append("name", formData.name)
+    data.append("categoryname", formData.categoryname)
     data.append("sequence", formData.sequence)
     data.append("status", formData.status)
     if (formData.image) {
@@ -51,40 +51,40 @@ const EditCategory = () => {
     }
 
     try {
-      await axios.put(`http://localhost:5001/products/${id}`, data, {
+      await axios.put(`http://localhost:5001/category/${id}`, data, {
         headers: {
           "Content-Type": "multipart/form-data"
         }
       })
       navigate("/Category")
     } catch (error) {
-      console.error("Error updating product:", error)
+      console.error("Error updating Category:", error)
     }
   }
 
   return (
     <div className="edit-category-container">
       <div className="edit-category-header">
-        <Link to="/Category" className="back-link">
+        <Link to="/Category" className="edit-back-link">
           <ArrowLeft28Regular />
         </Link>
         <h3 className="edit-category-title">Edit Category</h3>
       </div>
       <form className="edit-category-form" onSubmit={handleSave}>
-        <div className="input-row">
-          <div className="input-container">
+        <div className="edit-input-row">
+          <div className="edit-input-container">
             <input
               type="text"
-              name="name"
+              name="categoryname"
               id="name"
-              value={formData.name}
+              value={formData.categoryname}
               onChange={handleInputChange}
               placeholder="Category Name"
               required
             />
             <label htmlFor="name">Category Name</label>
           </div>
-          <div className="input-container">
+          <div className="edit-input-container">
             <input
               type="number"
               name="sequence"
@@ -101,8 +101,8 @@ const EditCategory = () => {
             <option value="Inactive">Inactive</option>
           </select>
         </div>
-        <div className="upload-image-section">
-          <label htmlFor="image" className="upload-image-label">
+        <div className="edit-upload-image-section">
+          <label htmlFor="image" className="edit-upload-image-label">
             {formData.previewImage ? (
               <img src={formData.previewImage} alt="Preview" />
             ) : (
@@ -130,13 +130,13 @@ const EditCategory = () => {
             />
           </label>
         </div>
-        <div className="button-group">
+        <div className="edit-button-group">
           <Link to="/Category">
-            <button type="button" className="cancel-btn">
+            <button type="edit-button" className="edit-cancel-btn">
               Cancel
             </button>
           </Link>
-          <button type="submit" className="save-btn">
+          <button type="submit" className="edit-save-btn">
             Save
           </button>
         </div>
